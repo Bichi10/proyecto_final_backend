@@ -1,0 +1,53 @@
+const bodyParser = require('body-parser');
+
+// Configurar para procesar datos de formularios
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Configurar para procesar datos en formato JSON
+
+app.use(bodyParser.json());
+
+
+
+
+// Configurar para procesar datos en formato JSON
+app.use(express.json());
+
+//contenido estatido
+app.use(express.static("public"))
+
+const express = require("express");
+const app = express();
+const port = 3000;
+
+//handlebars
+app.search('view engine', 'hbs');
+
+app.get("/", (req, res) => {
+ res.send("home");
+});
+
+app.get("/contacto", (req, res) => {
+ res.send("Contacto");
+});
+
+app.get("/formulario", (req, res) => {
+    res.send("formulario");
+   });
+
+app.get('/usuarios/:id', (req, res) => {
+    const id = req.params.id;
+    // Manejo de la solicitud GET a la ruta "/usuarios/:id"
+  });
+  
+  app.post('/usuario', (req, res) => {
+    const nombre = req.body.nombre;
+    const correo = req.body.correo;
+    const datos = { nombre, correo };
+    res.json(datos);
+  });
+  
+  app.listen(port, () => {
+    console.log('usando el puerto http://localhost:${port}');
+})

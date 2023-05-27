@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud </title>
+<link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+
+    <div class="container p-4">
+        <h2> Lista Alumnos</h2>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#myModalAdd">Añadir</button>
+
+    <table class="table table-striped" id="mytable">
+            <thead>
+                <th> id Alumno</th>
+                <th> nombre</th>
+                <th> Apellido</th>
+                <th> DNI</th>
+                <th> Colegio</th>
+                <th> año</th>
+                <th> turno</th>
+
+            </thead>
+            <tbody>
+                {{#each results}}
+        <tr>
+                <td> {{ id_alumno }}</td>
+                <td> {{ nombre }}</td>
+                <td> {{ apellido }}</td>
+                <td> {{ dni }}</td>
+                <td> {{ nombre_co }}</td>
+                <td> {{ año }}</td>
+                <td> {{ turno }}</td>
+        
+                <td><a href="javascript:void(0);" class="btn btn-info edit" data-id="{{ id_alumno}}" data-nombre="{{ nombre}}" data-apellido="{{ apellido}}", data-dni="{{ dni}}", data-nombre_co="{{ nombre_co}}",data-curso.año="{{ curso.año}}", data-curso.turno="{{ curso.turno}}">Editar</a>    
+                <a href="javascript:void(0);" class="btn btn-danger delete" data-id="{{ id_alumno}}"> Borrar</a>
+                </td>
+                
+            </tr>
+
+            {{/each}}
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+	<!-- MODAL AGREGAR PRODUCTOS -->
+        <form action="/save" method="post">       
+            <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Añadir Alumno</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre alumno" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="apellido" class="form-control" placeholder="apellido" required>
+                </div>
+                 <div class="form-group">
+                    <input type="text" name="dni" class="form-control" placeholder="dni" required>
+                </div>
+                 <div class="form-group">
+                    <input type="text" name="colegio" class="form-control" placeholder="colegio" required>
+                </div>
+                 <div class="form-group">
+                    <input type="text" name="año" class="form-control" placeholder="año" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="turno" class="form-control" placeholder="turno" required>
+                </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+            </div>
+            </div>
+        </form>
+
+
+
+
+{{!-- EDITAR--}}
+
+    <form action="/update" method="post">
+        <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" name="nombre" class="form-control nombre" placeholder="Nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="apellido" class="form-control precio" placeholder="apellido" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="dni" class="form-control precio" placeholder="dni" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" name="colegio" class="form-control precio" placeholder="colegio" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" name="año" class="form-control precio" placeholder="año" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" name="turno" class="form-control precio" placeholder="turno" required>
+                </div>
+                </div>
+                <div class="modal-footer">
+                <input type="hidden" name="id" class="id_alumno">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+            </div>
+            </div>
+            </div>
+    </form>
+
+
+
+
+
+{{!-- Modal delete --}}
+
+        <form id="add-row-form" action="/delete" method="post">
+            <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Borrar Alumno</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                    <strong>¿Estás seguro de borrar este elemento?</strong>
+                    </div>
+                    <div class="modal-footer">
+                    <input type="hidden" name="id_alumno" class="form-control id_alumno2" required>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-success">Eliminar</button>
+                    </div>
+                        </div>
+                </div>
+            </div>
+        </form>
+
+<script>
+$(document).ready(function(){
+    //Mostrar datos al modal para editar registro
+
+    $('#mytable').on('click', '.edit', function(){
+        let id_alumno = $(this).data('id');
+        let nombre = $(this).data('nombre');
+        let apellido = $(this).data('apellido');
+        let dni = $(this).data('dni');
+        let nombre_co = $(this).data('colegio.nombre_co');
+        let año = $(this).data('año');
+        let turno = $(this).data('turno');
+        $('#EditModal').modal('show');
+         $('.id_alumno').val(id_alumno);
+         $('.nombre').val(nombre);
+        $('.apellido').val(apellido);
+        $('.dni').val(dni);
+        $('.colegio.nombre_co').val(colegio.nombre_co);
+        $('.año').val(año);
+        $('.turno').val(turno);
+    })
+
+
+    $('#mytable').on('click', '.delete', function(){
+        let id_alumno = $(this).data('id');
+        $('#DeleteModal').modal('show');
+        $('.id_alumno2').val(id_alumno);
+
+    })
+})
+</script>
+
+
+
+
+<script>
+    $(document).ready(function(){
+        $('#mytable').on('click', '.edit', function(){
+            let id_alumno = $(this).data('id');
+            let nombre = $(this).data('nombre');
+            let apellido = $(this).data('apellido');
+            let dni = $(this).data('dni');
+            let nombre_co = $(this).data('colegio.nombre_co');
+            let año = $(this).data('año');
+            let turno = $(this).data('turno');
+            $('#EditModal').modal('show');  
+            $('.id_alumno').val(id_alumno);
+            $('.nombre').val(nombre);
+            $('.apellido').val(apellido);
+            $('.dni').val(dni);
+            $('.nombre_co').val(colegio.nombre_co);
+            $('.año').val(año);
+            $('.turno').val(turno);
+        })
+        $('#mytable').on('click', '.delete', function(){
+            let id_alumno = $(this).data('id');
+            $('#DeleteModal').modal('show');
+            $('id_alumno2').val(id_alumno);
+        } )
+
+
+
+    })
+</script>
+
+<script src="/assets/js/jquery-3.3.1.js"></script>
+<script src="/assets/js/bootstrap.js"></script>
+
+</body>
+</html>
