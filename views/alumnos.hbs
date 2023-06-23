@@ -15,32 +15,31 @@
         <button class="btn btn-primary" data-toggle="modal" data-target="#myModalAdd">Añadir</button>
 
     <table class="table table-striped" id="mytable">
-            <thead>
+          <thead>
                 <th> id Alumno</th>
-                <th> nombre</th>
+                <th> Nombre</th>
                 <th> Apellido</th>
                 <th> DNI</th>
                 <th> Colegio</th>
-                <th> año</th>
+                <th> curso</th>
                 <th> turno</th>
                 <th> materia </th>
                 <th> nota </th>
+                <th>Acciones</th>
             </thead>
             <tbody>
                 {{#each results}}
         <tr>
                 <td> {{ id_alumno }}</td>
-                <td> {{ nombre }}</td>
-                <td> {{ apellido }}</td>
+                <td> {{ nombre_alumno }}</td>
+                <td> {{ apellido_alumno }}</td>
                 <td> {{ dni }}</td>
-                <td> {{ nombre_co }}</td>
-                <td> {{ año }}</td>
+                <td> {{ colegio }}</td>
+                <td> {{ curso }}</td>
                 <td> {{ turno }}</td>
-                <td> {{ nombre_mat }}</td>
+                <td> {{ materia }}</td>
                 <td> {{ nota }}</td>
-
-        
-                <td><a href="javascript:void(0);" class="btn btn-info edit" data-id="{{ id_alumno}}" data-nombre="{{ nombre}}" data-apellido="{{ apellido}}", data-dni="{{ dni}}", data-nombre_co="{{ nombre_co}}",data-año="{{ año}}", data-turno="{{ turno}}", data-nombre_mat="{{ nombre_mat}}", , data-nota="{{ nota}}" >Editar</a>   
+                <td><a href="javascript:void(0);" class="btn btn-info edit" data-id="{{ id_alumno}}" data-nombre_alumno="{{ nombre_alumno}}" data-apellido_alumno="{{ apellido_alumno}}" data-dni="{{ dni}}" data-colegio="{{ colegio }}" data-curso="{{ curso }}" data-turno="{{turno }}" data-materia="{{ materia}}" data-nota="{{ nota}}">Editar</a>    
                 <a href="javascript:void(0);" class="btn btn-danger delete" data-id="{{ id_alumno}}"> Borrar</a>
                 </td>
                 
@@ -60,31 +59,38 @@
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Añadir Alumno</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Añadir producto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre alumno" required>
+                    <input type="text" name="nombre_alumno" class="form-control nombre_alumno" placeholder="nombre_alumno" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" name="apellido" class="form-control" placeholder="apellido" required>
-                </div>
-                 <div class="form-group">
-                    <input type="text" name="dni" class="form-control" placeholder="dni" required>
-                </div>
-                 <div class="form-group">
-                    <input type="text" name="colegio" class="form-control" placeholder="colegio" required>
-                </div>
-                 <div class="form-group">
-                    <input type="text" name="año" class="form-control" placeholder="año" required>
+                    <input type="text" name="apellido_alumno" class="form-control apellido_alumno" placeholder="apellido_alumno" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="turno" class="form-control" placeholder="turno" required>
+                    <input type="text" name="dni" class="form-control dni" placeholder="dni" required>
                 </div>
+                 <div class="form-group">
+                    <input type="text" name="colegio" class="form-control colegio" placeholder="colegio" required>
+                </div>
+                 <div class="form-group">
+                    <input type="int" name="curso" class="form-control curso" placeholder="curso" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="turno" class="form-control turno" placeholder="turno" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="materia" class="form-control materia" placeholder="materia" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="nota" class="form-control nota" placeholder="nota" required>
+                </div>
+               
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -112,33 +118,33 @@
                 </div>
                 <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" name="nombre" class="form-control nombre" placeholder="Nombre" required>
-                </div>
-
-                <div class="form-group">
-                    <input type="text" name="apellido" class="form-control precio" placeholder="apellido" required>
+                    <input type="text" name="nombre_alumno" class="form-control nombre_alumno" placeholder="nombre_alumno" required>
                 </div>
                 <div class="form-group">
-                    <input type="int" name="dni" class="form-control precio" placeholder="dni" required>
+                    <input type="text" name="apellido_alumno" class="form-control apellido_alumno" placeholder="apellido_alumno" required>
                 </div>
-                
                 <div class="form-group">
-                    <input type="text" name="colegio" class="form-control precio" placeholder="colegio" required>
+                    <input type="text" name="dni" class="form-control dni" placeholder="dni" required>
                 </div>
                 
                 <div class="form-group">
-                    <input type="int" name="año" class="form-control precio" placeholder="año" required>
+                    <input type="text" name="colegio" class="form-control colegio" placeholder="colegio" required>
                 </div>
                 
                 <div class="form-group">
-                    <input type="text" name="turno" class="form-control precio" placeholder="turno" required>
+                    <input type="text" name="curso" class="form-control curso" placeholder="curso" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" name="turno" class="form-control turno" placeholder="turno" required>
                 </div>
                   <div class="form-group">
-                    <input type="text" name="materia" class="form-control" placeholder="materia" required>
+                    <input type="text" name="materia" class="form-control materia" placeholder="materia" required>
                 </div>
                 <div class="form-group">
-                    <input type="int" name="nota" class="form-control" placeholder="nota" required>
+                    <input type="int" name="nota" class="form-control nota" placeholder="nota" required>
                 </div>
+
                 </div>
                 <div class="modal-footer">
                 <input type="hidden" name="id" class="id_alumno">
@@ -161,14 +167,14 @@
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel">Borrar Alumno</h5>
+                        <h5 class="modal-title" id="myModalLabel">Borrar alumno</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
                     <strong>¿Estás seguro de borrar este elemento?</strong>
                     </div>
                     <div class="modal-footer">
-                    <input type="hidden" name="id_alumno" class="form-control id_alumno2" required>
+                    <input type="hidden" name="id_alumno" class="form-control alumno_id2" required>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-success">Eliminar</button>
                     </div>
@@ -177,42 +183,45 @@
             </div>
         </form>
 
+
+<script src="/assets/js/jquery-3.3.1.js"></script>
+<script src="/assets/js/bootstrap.js"></script>
+
 <script>
 $(document).ready(function(){
     //Mostrar datos al modal para editar registro
 
     $('#mytable').on('click', '.edit', function(){
         let id_alumno = $(this).data('id');
-        let nombre = $(this).data('nombre');
-        let apellido = $(this).data('apellido');
+        let nombre_alumno = $(this).data('nombre_alumno');
+        let apellido_alumno = $(this).data('apellido_alumno');
         let dni = $(this).data('dni');
-        let nombre_co = $(this).data('colegio.nombre_co');
-        let año = $(this).data('año');
+        let colegio = $(this).data('colegio');
+        let curso = $(this).data('curso');
         let turno = $(this).data('turno');
-        let nombre_mat = $(this).data('nombre_mat');
+        let materia = $(this).data('materia');
         let nota = $(this).data('nota');
         $('#EditModal').modal('show');
-         $('.id_alumno').val(id_alumno);
-         $('.nombre').val(nombre);
-        $('.apellido').val(apellido);
+        $('.id_alumno').val(id_alumno);
+        $('.nombre_alumno').val(nombre_alumno);
+        $('.apellido_alumno').val(apellido_alumno);
         $('.dni').val(dni);
-        $('.nombre_co').val(colegio.nombre_co);
-        $('.año').val(curso.año);
-        $('.turno').val(curso.turno);
-        $('.nombre_mat').val(materia.nombre_mat);
-        $('.nota').val(nota.nota);
+        $('.colegio').val(colegio);
+        $('.curso').val(curso);
+        $('.turno').val(turno);
+        $('.materia').val(materia);
+        $('.nota').val(nota);
     })
 
 
     $('#mytable').on('click', '.delete', function(){
         let id_alumno = $(this).data('id');
         $('#DeleteModal').modal('show');
-        $('.id_alumno2').val(id_alumno);
+        $('.id_alumno2').val(id_alumno2);
 
     })
 })
 </script>
-
 
 </body>
 </html>

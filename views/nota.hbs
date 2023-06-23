@@ -16,30 +16,28 @@
 
     <table class="table table-striped" id="mytable">
             <thead>
-                
+                <th> id_alumno</th>
                 <th> nombre</th>
                 <th> Apellido</th>
                 <th> Materia</th>
                 <th> nota</th>
                 <th> Colegio</th>
-                <th> año</th>
+                <th> curso</th>
                 
-
-
             </thead>
             <tbody>
                 {{#each results}}
         <tr>
-               
-                <td> {{ nombre }}</td>
-                <td> {{ apellido }}</td>
+               <td> {{ id_alumno}}</td>
+                <td> {{ nombre_alumno}}</td>
+                <td> {{ apellido_alumno }}</td>
                 <td> {{ nota }}</td>
-                <td> {{ nombre_mat }}</td>
-                <td> {{ nombre_co }}</td>
-                <td> {{ año }}</td>
+                <td> {{ materia }}</td>
+                <td> {{ colegio }}</td>
+                <td> {{ curso }}</td>
                 
         
-                <td><a href="javascript:void(0);" class="btn btn-info edit" data-nombre="{{ nombre}}", data-apellido="{{ apellido}}",data-nombre_mat="{{ nombre_mat}}", data-curso.nota="{{ curso.nota}}, data-nombre_co="{{ nombre_co}}",data-curso.año="{{ curso.año}}">Editar</a>   
+                <td><a href="javascript:void(0);" class="btn btn-info edit" data-nombre_alumno="{{ nombre_alumno}}", data-apellido_alumno="{{ apellido_alumno}}",data-materia="{{ materia}}", data-nota="{{ nota}}",data-colegio="{{ colegio}}",data-curso="{{ curso}}",data-dni="{{ dni}}">Editar</a>   
                 <a href="javascript:void(0);" class="btn btn-danger delete" data-id="{{ id_alumno}}"> Borrar</a>
                 </td>
                 
@@ -79,10 +77,10 @@
                     <input type="text" name="colegio" class="form-control" placeholder="colegio" required>
                 </div>
                  <div class="form-group">
-                    <input type="text" name="año" class="form-control" placeholder="año" required>
+                    <input type="text" name="materia" class="form-control" placeholder="materia" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="nota" class="form-control" placeholder="nota" required>
+                    <input type="int" name="nota" class="form-control" placeholder="nota" required>
                 </div>
                 </div>
                 <div class="modal-footer">
@@ -104,33 +102,36 @@
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar alumno</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" name="nombre" class="form-control nombre" placeholder="Nombre" required>
+                    <input type="text" name="nombre_alumno" class="form-control nombre_alumno" placeholder="Nombre" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" name="apellido" class="form-control precio" placeholder="apellido" required>
+                    <input type="text" name="apellido_alumno" class="form-control apellido_alumno" placeholder="apellido" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="dni" class="form-control precio" placeholder="dni" required>
-                </div>
-                
-                <div class="form-group">
-                    <input type="text" name="colegio" class="form-control precio" placeholder="colegio" required>
+                    <input type="int" name="dni" class="form-control dni" placeholder="dni" required>
                 </div>
                 
                 <div class="form-group">
-                    <input type="text" name="año" class="form-control precio" placeholder="año" required>
+                    <input type="text" name="colegio" class="form-control colegio" placeholder="colegio" required>
                 </div>
                 
                 <div class="form-group">
-                    <input type="text" name="nota" class="form-control precio" placeholder="nota" required>
+                    <input type="text" name="materia" class="form-control materia" placeholder="materia" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="int" name="nota" class="form-control nota" placeholder="nota" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="turno" class="form-control turno" placeholder="turno" required>
                 </div>
                 </div>
                 <div class="modal-footer">
@@ -175,20 +176,20 @@ $(document).ready(function(){
     //Mostrar datos al modal para editar registro
 
     $('#mytable').on('click', '.edit', function(){
-        let id_alumno = $(this).data('id');
-        let nombre = $(this).data('nombre');
-        let apellido = $(this).data('apellido');
-        let nombre_mat = $(this).data('nombre_mat');
-        let nombre_co = $(this).data('nombre_co');
-        let año = $(this).data('año');
+        let id_alumno = $(this).data('id_alumno');
+        let nombre_alumno = $(this).data('nombre_alumno');
+        let apellido_alumno = $(this).data('apellido_alumno');
+        let materia = $(this).data('materia');
+        let colegio = $(this).data('colegio');
+        let curso = $(this).data('curso');
         let nota = $(this).data('nota');
         $('#EditModal').modal('show');
          $('.id_alumno').val(id_alumno);
-         $('.nombre').val(nombre);
-        $('.apellido').val(apellido);
-        $('.dni').val(nombre_mat);
-        $('.colegio.nombre_co').val(colegio.nombre_co);
-        $('.año').val(año);
+         $('.nombre_alumno').val(nombre_alumno);
+        $('.apellido_alumno').val(apellido_alumno);
+        $('.dni').val(dni);
+        $('.colegio').val(colegio);
+        $('.materia').val(materia);
         $('.nota').val(nota);
     })
 
@@ -202,41 +203,7 @@ $(document).ready(function(){
 })
 </script>
 
-
-
-
-<script>
-    $(document).ready(function(){
-        $('#mytable').on('click', '.edit', function(){
-            let id_alumno = $(this).data('id');
-            let nombre = $(this).data('nombre');
-            let apellido = $(this).data('apellido');
-            let dni = $(this).data('dni');
-            let nombre_co = $(this).data('colegio.nombre_co');
-            let año = $(this).data('año');
-            let nota = $(this).data('nota');
-            $('#EditModal').modal('show');  
-            $('.id_alumno').val(id_alumno);
-            $('.nombre').val(nombre);
-            $('.apellido').val(apellido);
-            $('.dni').val(dni);
-            $('.nombre_co').val(colegio.nombre_co);
-            $('.año').val(año);
-            $('.nota').val(nota);
-        })
-        $('#mytable').on('click', '.delete', function(){
-            let id_alumno = $(this).data('id');
-            $('#DeleteModal').modal('show');
-            $('id_alumno2').val(id_alumno);
-        } )
-
-
-
-    })
-</script>
-
 <script src="/assets/js/jquery-3.3.1.js"></script>
 <script src="/assets/js/bootstrap.js"></script>
 
 </body>
-</html>

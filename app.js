@@ -40,10 +40,10 @@ app.get("/", (req, res) => {
     res.render('contacto')
   });
   
-  app.get("/alumnos", (req, res) => {
+  /*app.get("/alumnos", (req, res) => {
     res.sendFile(__dirname +"/views/alumnos.html")
   });
-  
+*/  
 
   app.get("/formulario", (req, res) => {
     res.sendFile(__dirname +"/public/formulario.html")

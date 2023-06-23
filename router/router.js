@@ -7,7 +7,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'edu_fisica'
+    database: 'colegios'
     })
     
     conn.connect((err) => {
@@ -15,11 +15,11 @@ const conn = mysql.createConnection({
         console.log('Conexión establecida...')
     });
     
-        //RUTAS
+    
+    //RUTAS
     // SELECT 
     router.get('/', (req, res) => {
-        let sql = "SELECT * FROM alumno, colegio, curso,materia,nota where alumno.id_co = colegio.id_co and alumno.id_cu = curso.id_cu and alumno.id_nota= nota.id_alumno and alumno.id_materia = materia.id_materia ";
-        //let sql = "SELECT * FROM alumno, colegio, curso where alumno.id_co = colegio.id_co and alumno.id_cu = curso.id_cu order by id_alumno";
+        let sql = "SELECT * FROM notas";
         let query = conn.query(sql, (err, results) => {
         if (err) throw err;
         res.render('alumnos', {
@@ -27,17 +27,19 @@ const conn = mysql.createConnection({
         });
         });
     });
-
+    
     // Insertar 
     router.post('/save', (req, res) => {
-        let data = { nombre: req.body.nombre, 
-            apellido: req.body.apellido, 
+        let data = { nombre_alumno: req.body.nombre_alumno, 
+            apellido_alumno: req.body.apellido_alumno, 
             dni: req.body.dni, 
-            id_co: req.body.colegio, 
-            año: req.body.año, 
-            turno:req.body.turno 
-        };
-        let sql = "INSERT INTO alumno, colegio, curso SET ?";
+            colegio: req.body.colegio, 
+            turno:req.body.turno ,
+            materia:req.body.materia,
+            nota:req.body.nota, 
+            curso:req.body.curso 
+         };
+        let sql = "INSERT INTO notas SET ?";
         let query = conn.query(sql, data, (err, results) => {
         if (err) throw err;
         res.redirect('/');
@@ -47,7 +49,14 @@ const conn = mysql.createConnection({
     
     //UPDATE
     router.post('/update', (req, res) => {
-        let sql = "UPDATE alumno SET nombre='" + req.body.nombre + "', apellido='" + req.body.apellido + "',dni='" + req.body.dni + "',id_co='" + req.body.id_co + "', id_cu='" + req.body.id_cu + "' WHERE id_alumno=" + req.body.id;
+        let sql = "UPDATE notas SET nombre_alumno='" + req.body.nombre_alumno
+        + "', apellido_alumno='" + req.body.apellido_alumno
+        + "',dni='" + req.body.dni 
+        + "',Colegio='" + req.body.colegio 
+        + "',nota='" + req.body.nota 
+        + "',curso='" + req.body.curso
+        + "' WHERE id_alumno=" 
+        + req.body.id;
         let query = conn.query(sql, (err, results) => {
         if (err) throw err;
         res.redirect('/');
@@ -56,12 +65,11 @@ const conn = mysql.createConnection({
     
     // DELETE
     router.post('/delete',(req, res) => {
-        let sql = "DELETE FROM alumno WHERE id_alumno="+req.body.id_alumno+"";
+        let sql = "DELETE FROM notas WHERE id_alumno="+req.body.id_alumno+"";
         let query = conn.query(sql, (err, results) => {
         if(err) throw err;
             res.redirect('/');
         });
     });
-
-
+    
     module.exports = router;
