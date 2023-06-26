@@ -4,7 +4,7 @@ const hbs = require ('hbs');
 const router = require ('./router/formulario');
 const router1 = require ('./views/alumnos');
 const SMTPPool = require("nodemailer/lib/smtp-pool");
-const port = 3000;
+const port = 5000;
 
 //---------------HANDLEBARS
 
@@ -29,16 +29,10 @@ app.get("/", (req, res) => {
     })
   });
   
-  app.get("/generic", (req, res) => {
-    res.render('generic',{
-      nombre: 'Cosme Fulanito',
-      titulo: 'UTN FULL STACK '
-    })
-  });
-  
-  app.get("/Contacto", (req, res) => {
+
+/*  app.get("/Contacto", (req, res) => {
     res.render('contacto')
-  });
+  });*/
   
   /*app.get("/alumnos", (req, res) => {
     res.sendFile(__dirname +"/views/alumnos.html")
